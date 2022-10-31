@@ -292,9 +292,9 @@ class AVAudioSession {
 
   //Future<void> setInputGain(double gain) async {}
 
-  //Future<double> get outputVolume async {
-  //  return 1.0;
-  //}
+  Future<double> get outputVolume async {
+    return (await _channel.invokeMethod<double>('getOutputVolume'))!;
+  }
 
   //Future<double> get sampleRate async {
   //  return 48000.0;

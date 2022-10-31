@@ -86,6 +86,8 @@ static NSHashTable<DarwinAudioSession *> *sessions = nil;
         [self getInputLatency:args result:result];
     } else if ([@"getOutputLatency" isEqualToString:call.method]) {
         [self getOutputLatency:args result:result];
+    } else if ([@"getOutputVolume" isEqualToString:call.method]) {
+        [self getOutputVolume:args result:result];
     } else {
         result(FlutterMethodNotImplemented);
     }
@@ -466,6 +468,10 @@ static NSHashTable<DarwinAudioSession *> *sessions = nil;
 
 - (void)getOutputLatency:(NSArray *)args result:(FlutterResult)result {
     result(@((long long)([[AVAudioSession sharedInstance] outputLatency] * 1000000.0)));
+}
+
+- (void)getOutputVolume:(NSArray *)args result:(FlutterResult)result {
+    result(@((float float)([[AVAudioSession sharedInstance] outputVolume])));
 }
 
 - (AVAudioSessionCategory)flutterToCategory:(NSNumber *)categoryIndex {
